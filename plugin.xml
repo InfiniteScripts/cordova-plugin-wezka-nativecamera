@@ -5,6 +5,8 @@
       version="0.1.9">
     <name>Whamads Native Camera</name>
 
+    <dependency id="cordova-plugin-compat" version="^1.1.0" />       
+           
     <js-module src="www/CameraConstants.js" name="Camera">
         <clobbers target="Camera" />
     </js-module>
