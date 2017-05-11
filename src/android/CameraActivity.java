@@ -13,6 +13,9 @@
 
 package com.whamads.nativecamera;
 
+import org.apache.cordova.PermissionHelper;
+
+import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.graphics.ImageFormat;
@@ -343,7 +346,16 @@ public class CameraActivity extends Activity implements SensorEventListener {
         super.onResume();
         if (Camera.getNumberOfCameras() >= 1) {
             try {
-                camera = Camera.open(cam);
+		Log.d(TAG, "Camera = " + camera);
+		if(camera != null) {    
+			camera.release();
+		}
+
+		if(!PermissionHelper.hasPermission(this, Manifest.permission.CAMERA)) {
+                    PermissionHelper.requestPermission(this, 1, Manifest.permission.CAMERA);
+                } else {
+		    camera = Camera.open(cam);
+		}   	    
             } catch (RuntimeException ex) {
                 // Camera opening error. Warn user
                 Toast.makeText(getApplicationContext(),
