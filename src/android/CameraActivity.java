@@ -348,14 +348,9 @@ public class CameraActivity extends Activity implements SensorEventListener {
             try {
 		Log.d(TAG, "Camera = " + camera);
 		if(camera != null) {    
-			camera.release();
+  		   camera.release();
 		}
-
-		if(!PermissionHelper.hasPermission(this, Manifest.permission.CAMERA)) {
-                    PermissionHelper.requestPermission(this, 1, Manifest.permission.CAMERA);
-                } else {
-		    camera = Camera.open(cam);
-		}   	    
+		camera = Camera.open(cam);
             } catch (RuntimeException ex) {
                 // Camera opening error. Warn user
                 Toast.makeText(getApplicationContext(),
