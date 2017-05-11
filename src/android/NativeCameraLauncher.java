@@ -31,6 +31,7 @@ import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.LOG;
 import org.apache.cordova.PluginResult;
+import org.apache.cordova.PermissionHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -92,6 +93,12 @@ public class NativeCameraLauncher extends CordovaPlugin {
 		this.callbackContext = callbackContext;
 		try {
 			if (action.equals("takePicture")) {
+				
+				if(!PermissionHelper.hasPermission(this, Manifest.permission.CAMERA)) {
+					PermissionHelper.requestPermission(this, 1, Manifest.permission.CAMERA);
+				} else {
+				
+				
 				this.targetHeight = 0;
 				this.targetWidth = 0;
 				this.mQuality = 80;
@@ -101,7 +108,8 @@ public class NativeCameraLauncher extends CordovaPlugin {
 				this.takePicture();
 				PluginResult r = new PluginResult(PluginResult.Status.NO_RESULT);
 				r.setKeepCallback(true);
-				callbackContext.sendPluginResult(r);
+ 				callbackContext.sendPluginResult(r);
+				}
 				return true;
 			}
 			return false;
