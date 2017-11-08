@@ -1,5 +1,5 @@
 {
-  "name": "Wezka Native Camera",
+  "name": "cordova-plugin-wezka-nativecamera",
   "version": "0.1.9",
   "description": "Cordova Camera Plugin",
   "cordova": {
