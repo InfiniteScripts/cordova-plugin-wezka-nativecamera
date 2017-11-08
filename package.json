@@ -1,5 +1,5 @@
 {
-  "name": "com.whamads.nativecamera",
+  "name": "Wezka Native Camera",
   "version": "0.1.9",
   "description": "Cordova Camera Plugin",
   "cordova": {
